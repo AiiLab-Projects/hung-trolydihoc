@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f7f2">
+    <title>Hôm nay mang gì đi học?</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Trang chủ">
+          <span class="brand-mark" aria-hidden="true">✳</span>
+          <span>Đi học thôi!</span>
+        </a>
+        <span class="topbar-note">Một ngày mới, chuẩn bị thật vui</span>
+      </header>
+
+      <section class="intro" aria-labelledby="page-title">
+        <div class="intro-copy">
+          <p class="eyebrow" id="today-date"></p>
+          <h1 id="page-title">Hôm nay<br><span>mang gì đi học?</span></h1>
+          <p class="intro-text">Chọn lịch học và thời tiết, tụi mình sẽ cùng soạn cặp nhé.</p>
+        </div>
+        <div class="school-illustration" aria-hidden="true">
+          <span class="sun">☀</span>
+          <span class="cloud cloud-one"></span>
+          <span class="cloud cloud-two"></span>
+          <span class="book book-back"></span>
+          <span class="book book-front"></span>
+          <span class="pencil">✎</span>
+          <span class="sparkle sparkle-one">✦</span>
+          <span class="sparkle sparkle-two">·</span>
+        </div>
+      </section>
+
+      <section class="setup-card" aria-label="Thông tin hôm nay">
+        <div class="section-heading">
+          <div>
+            <p class="step-label">BƯỚC 1</p>
+            <h2>Lịch học hôm nay</h2>
+          </div>
+          <span class="heading-icon" aria-hidden="true">📚</span>
+        </div>
+        <p class="helper-text">Chọn những môn bạn có tiết hôm nay.</p>
+        <div class="subject-list" id="subject-list" aria-label="Các môn học"></div>
+        <label class="custom-subject-label" for="custom-subject">Môn khác?</label>
+        <form class="custom-subject-form" id="custom-subject-form">
+          <input id="custom-subject" type="text" maxlength="32" placeholder="Ví dụ: Tin học" autocomplete="off">
+          <button type="submit" class="add-button">Thêm môn <span aria-hidden="true">＋</span></button>
+        </form>
+
+        <div class="weather-section">
+          <div class="section-heading weather-heading">
+            <div>
+              <p class="step-label">BƯỚC 2</p>
+              <h2>Trời hôm nay thế nào?</h2>
+            </div>
+            <span class="heading-icon" aria-hidden="true">🌤️</span>
+          </div>
+          <div class="weather-list" id="weather-list" aria-label="Thời tiết"></div>
+        </div>
+
+        <button class="suggest-button" id="suggest-button" type="button">
+          Soạn cặp cho mình <span aria-hidden="true">→</span>
+        </button>
+      </section>
+
+      <section class="checklist-card" id="checklist-card" aria-labelledby="checklist-title" hidden>
+        <div class="checklist-heading">
+          <div>
+            <p class="step-label">CẶP ĐÃ SẴN SÀNG?</p>
+            <h2 id="checklist-title">Đừng quên mang theo</h2>
+          </div>
+          <div class="progress" id="progress" aria-live="polite"></div>
+        </div>
+        <p class="checklist-note" id="checklist-note"></p>
+        <div class="checklist" id="checklist"></div>
+        <div class="checklist-footer">
+          <span>Đã kiểm tra xong? Lên đường thôi! ✨</span>
+          <button class="reset-button" id="reset-button" type="button">Bỏ chọn tất cả</button>
+        </div>
+      </section>
+
+      <footer>Nhớ uống nước và đi học thật vui nhé! <span aria-hidden="true">💛</span></footer>
+    </main>
+  </body>
+</html>
