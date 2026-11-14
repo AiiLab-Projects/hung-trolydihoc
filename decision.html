@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f7f2">
+    <title>Bảng quyết định | Đi học thôi!</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="data.js" defer></script>
+    <script src="decision.js" defer></script>
+  </head>
+  <body>
+    <main class="app-shell decision-shell">
+      <header class="topbar">
+        <a class="brand" href="index.html" aria-label="Trang chủ">
+          <span class="brand-mark" aria-hidden="true">✳</span>
+          <span>Đi học thôi!</span>
+        </a>
+        <a class="topbar-link" href="index.html">← Về trang soạn cặp</a>
+      </header>
+
+      <section class="decision-card" aria-labelledby="decision-title">
+        <div class="section-heading">
+          <div>
+            <p class="step-label">GỢI Ý THEO LỰA CHỌN</p>
+            <h1 id="decision-title">Bảng mọi tổ hợp đầu vào</h1>
+          </div>
+          <span class="heading-icon" aria-hidden="true">🧭</span>
+        </div>
+        <p class="decision-note">Bảng liệt kê đủ tổ hợp môn học và thời tiết. Mỗi dòng ghi đồ dùng trợ lý khuyên mang theo và tình trạng bao phủ luật.</p>
+        <p class="decision-coverage" id="decision-coverage" aria-live="polite"></p>
+        <p class="decision-note">Luật môn tự thêm: với mỗi môn tự thêm được chọn, bổ sung sách / tài liệu của môn đó.</p>
+        <div class="decision-table-wrap">
+          <table class="decision-table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Môn đã chọn</th>
+                <th scope="col">Thời tiết</th>
+                <th scope="col">Trợ lý khuyên</th>
+                <th scope="col">Bao phủ luật</th>
+              </tr>
+            </thead>
+            <tbody id="decision-table-body"></tbody>
+          </table>
+        </div>
+        <div class="decision-pagination" aria-label="Phân trang bảng quyết định">
+          <button class="decision-page-button" id="decision-previous" type="button">← Trang trước</button>
+          <span id="decision-page-status" aria-live="polite"></span>
+          <button class="decision-page-button" id="decision-next" type="button">Trang sau →</button>
+        </div>
+      </section>
+
+      <footer>Nhớ uống nước và đi học thật vui nhé! <span aria-hidden="true">💛</span></footer>
+    </main>
+  </body>
+</html>
