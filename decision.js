@@ -1,4 +1,4 @@
-const { subjects, weatherOptions, baseItems, weatherAdvice } = window.schoolPlannerData;
+const { subjects, weatherOptions, evaluateRules } = window.schoolPlannerData;
 const decisionTableBody = document.querySelector("#decision-table-body");
 const decisionCoverage = document.querySelector("#decision-coverage");
 const decisionPageStatus = document.querySelector("#decision-page-status");
@@ -12,19 +12,18 @@ for (let subjectMask = 0; subjectMask < 2 ** subjects.length; subjectMask += 1) 
   const selectedSubjects = subjects.filter((_, index) => subjectMask & (1 << index));
   for (let weatherMask = 0; weatherMask < 2 ** weatherOptions.length; weatherMask += 1) {
     const selectedWeather = weatherOptions.filter((_, index) => weatherMask & (1 << index));
-    const advice = [
-      ...baseItems.map((item) => item.name),
-      ...selectedSubjects.flatMap((subject) => subject.items),
-      ...selectedWeather.map((option) => weatherAdvice[option.id]),
-    ];
-    const hasRule = baseItems.length > 0
-      && selectedSubjects.every((subject) => Array.isArray(subject.items))
-      && selectedWeather.every((option) => typeof weatherAdvice[option.id] === "string");
+    const result = evaluateRules({
+      selectedSubjects: selectedSubjects.map((subject) => subject.name),
+      selectedWeather: selectedWeather.map((option) => option.id),
+    });
+    const advice = result.items.map((item) => item.name);
+    const hasRule = result.matchedRules.length > 0;
     decisionRows.push({
       subjects: selectedSubjects.map((subject) => subject.name),
       weather: selectedWeather.map((option) => option.label),
       advice,
       hasRule,
+      matchedRules: result.matchedRules.map((rule) => rule.label),
     });
   }
 }
@@ -40,6 +39,7 @@ function renderDecisionTable() {
       row.subjects.length ? row.subjects.join(", ") : "Không chọn môn",
       row.weather.length ? row.weather.join(", ") : "Không chọn thời tiết",
       row.advice.join(", "),
+      row.matchedRules.join(" → "),
       row.hasRule ? "Đủ luật" : "Thiếu luật",
     ];
     for (const value of values) {

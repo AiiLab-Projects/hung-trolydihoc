@@ -88,26 +88,11 @@ function renderWeather() {
 }
 
 function buildChecklist() {
-  const items = [...baseItems];
-  if (state.subjects.length > 0) {
-    const subjectItems = subjects
-      .filter((subject) => state.subjects.includes(subject.name))
-      .flatMap((subject) => subject.items.map((item) => ({ id: `subject-${item}`, name: item, icon: subject.icon })));
-    const customItems = state.customSubjects
-      .filter((name) => state.subjects.includes(name))
-      .map((name) => ({ id: `custom-${name}`, name: `Sách / tài liệu ${name}`, icon: "📘" }));
-    items.splice(1, 0, ...subjectItems, ...customItems);
-  }
-  if (state.weather.includes("rainy")) {
-    items.push({ id: "umbrella", name: "Áo mưa hoặc ô", icon: "☔" });
-  }
-  if (state.weather.includes("cold")) {
-    items.push({ id: "jacket", name: "Áo khoác ấm", icon: "🧥" });
-  }
-  if (state.weather.includes("sunny")) {
-    items.push({ id: "sunscreen", name: "Mũ / áo chống nắng", icon: "🧢" });
-  }
-  return items.filter((item, index, all) => all.findIndex((other) => other.id === item.id) === index);
+  return window.schoolPlannerData.evaluateRules({
+    selectedSubjects: state.subjects,
+    customSubjects: state.customSubjects,
+    selectedWeather: state.weather,
+  });
 }
 
 function renderChecklist(items = state.checklist) {
@@ -163,11 +148,18 @@ document.querySelector("#custom-subject-form").addEventListener("submit", (event
 });
 
 document.querySelector("#suggest-button").addEventListener("click", () => {
-  state.checklist = buildChecklist();
+  const result = buildChecklist();
+  state.checklist = result.items;
   state.checkedItems = state.checkedItems.filter((id) => state.checklist.some((item) => item.id === id));
-  note.textContent = state.subjects.length
-    ? `Đã thêm đồ dùng cho ${state.subjects.join(", ")}${state.weather.length ? " và thời tiết hôm nay" : ""}.`
-    : "Đây là những món cơ bản. Chọn môn học hoặc thời tiết để nhận gợi ý phù hợp hơn.";
+  note.textContent = `Trợ lý v1 đã chạy: ${result.matchedRules.map((rule) => rule.label).join(" → ")}.`;
+  const assistantRules = document.querySelector("#assistant-rules");
+  assistantRules.replaceChildren();
+  result.matchedRules.forEach((rule) => {
+    const item = document.createElement("li");
+    item.textContent = `${rule.label}: ${rule.detail}`;
+    assistantRules.append(item);
+  });
+  document.querySelector("#assistant-card").hidden = false;
   saveState();
   renderChecklist();
   checklistCard.hidden = false;

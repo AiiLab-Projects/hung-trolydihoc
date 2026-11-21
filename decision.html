@@ -30,6 +30,18 @@
         <p class="decision-note">Bảng liệt kê đủ tổ hợp môn học và thời tiết. Mỗi dòng ghi đồ dùng trợ lý khuyên mang theo và tình trạng bao phủ luật.</p>
         <p class="decision-coverage" id="decision-coverage" aria-live="polite"></p>
         <p class="decision-note">Luật môn tự thêm: với mỗi môn tự thêm được chọn, bổ sung sách / tài liệu của môn đó.</p>
+        <section class="rule-flow" aria-labelledby="rule-flow-title">
+          <h2 id="rule-flow-title">Sơ đồ luật có thứ tự</h2>
+          <div class="rule-flow-list">
+            <div class="rule-node rule-nested"><strong>1. Luật lồng</strong><span>Nếu Thể dục → nếu trời mưa</span></div>
+            <div class="rule-arrow" aria-hidden="true">↓</div>
+            <div class="rule-node"><strong>2. Luật môn học</strong><span>Thêm đồ dùng riêng của môn</span></div>
+            <div class="rule-arrow" aria-hidden="true">↓</div>
+            <div class="rule-node"><strong>3. Luật thời tiết</strong><span>Thêm đồ dùng chống nắng/mưa/lạnh</span></div>
+            <div class="rule-arrow" aria-hidden="true">↓</div>
+            <div class="rule-node rule-fallback"><strong>4. Luật còn lại</strong><span>Nếu chưa khớp luật riêng → dùng đồ cơ bản</span></div>
+          </div>
+        </section>
         <div class="decision-table-wrap">
           <table class="decision-table">
             <thead>
@@ -38,6 +50,7 @@
                 <th scope="col">Môn đã chọn</th>
                 <th scope="col">Thời tiết</th>
                 <th scope="col">Trợ lý khuyên</th>
+                <th scope="col">Luật đã chạy</th>
                 <th scope="col">Bao phủ luật</th>
               </tr>
             </thead>

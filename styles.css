@@ -200,6 +200,23 @@ h1 span { color: var(--green); }
 .suggest-button span { font-size: 20px; }
 
 .decision-card { margin-top: 18px; }
+.assistant-card {
+  margin-top: 18px;
+  padding: 23px 28px;
+  border: 1px solid #dde7da;
+  border-radius: 19px;
+  background: #f8fbf5;
+}
+.assistant-rules { margin: 14px 0 0; padding-left: 22px; color: #56665b; font-size: 12px; line-height: 1.7; }
+.rule-flow { margin: 16px 0 18px; padding: 18px; border: 1px solid var(--line); border-radius: 12px; background: #fafbf8; }
+.rule-flow h2 { margin: 0 0 12px; font-family: "Nunito", sans-serif; font-size: 16px; }
+.rule-flow-list { display: grid; grid-template-columns: 1fr 24px 1fr 24px 1fr 24px 1fr; align-items: stretch; }
+.rule-node { min-height: 82px; display: flex; flex-direction: column; justify-content: center; gap: 5px; padding: 10px; border: 1px solid #cfdcca; border-radius: 10px; background: #fff; color: #56665b; font-size: 11px; line-height: 1.35; }
+.rule-node strong { color: var(--green-dark); }
+.rule-node span { color: var(--muted); }
+.rule-nested { background: #edf4e7; }
+.rule-fallback { border-style: dashed; background: #fffaf3; }
+.rule-arrow { display: grid; place-items: center; color: #91a08f; font-size: 16px; }
 .decision-note { margin: 8px 0 15px; color: var(--muted); font-size: 12px; line-height: 1.5; }
 .decision-coverage { margin: 0 0 9px; color: var(--green-dark); font-size: 12px; font-weight: 800; line-height: 1.5; }
 .decision-table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; }
@@ -247,6 +264,8 @@ footer { padding: 22px 0 3px; color: #8a958b; text-align: center; font-size: 11p
 
 @media (max-width: 560px) {
   .app-shell, .decision-shell { width: min(100% - 28px, 460px); padding-top: 19px; }
+  .rule-flow-list { grid-template-columns: 1fr; gap: 5px; }
+  .rule-arrow { height: 18px; transform: rotate(0deg); }
   .setup-card, .decision-card, .checklist-card { padding: 23px 20px; }
   .decision-pagination { flex-wrap: wrap; }
   .topbar-actions { gap: 10px; }
